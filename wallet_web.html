@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="E_wal.css">
+    <title>E wallet</title>
+</head>
+<body>
+    <h2>บัญชีรายรับ-รายจ่าย</h2>
+    <div class="container">
+        <h4>ยอดคงเหลือ (บาท)</h4>
+        <h1 id="balance">฿0.00</h1>
+        <div class="income-expense-container">
+            <div>
+                <h4>รายรับ</h4>
+                <p id="money-plus" class="money plus"></p>
+            </div>
+            <div>
+                <h4>รายจ่าย</h4>
+                <p id="money-minus" class="money minus">-฿200</p>
+            </div>
+        </div>
+    <h3>ประวัติธุรกรรม</h3>
+    <ul class="list" id="list">
+        <!-- <li class="minus">ค่าซ่อมรถ<span>- ฿400</span>
+            <button class="delete-btn">x</button>
+        </li>
+        <li class="plus">เงินเดือน<span>+ ฿15000</span>
+            <button class="delete-btn">x</button>
+        </li> -->
+    </ul>.
+    <h3>เพิ่มธุรกรรม</h3>
+    <form" id="form">
+        <div class="form-control">
+            <label for="text">ชื่อรายการ</label>
+            <input type="text" id="text" placeholder="ระบุธุรกรรม">
+        </div>
+        <div class="form-control">
+            <label for="amount">ระบุจำนวนเงิน <br>
+                (+รายรับ,-รายจ่าย) 
+            </label>
+            <input type="number" id="amount" placeholder="จำนวนเงิน">
+        </div>
+        <button class="btn" id="tr-btn">เพิ่มธุรกรรม</button>
+    </form>
+    </div>
+    <script src="E_wal.js"></script>
+</body>
+</html>
