@@ -59,6 +59,10 @@ daTa.addEventListener("click",function(){
     AddDatatolist(las);
     calculates();
 })
-
+let x = [156484321,321658,312654,135165];
+function xx(value){
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+console.log(xx(x));
 
 
