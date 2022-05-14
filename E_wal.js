@@ -5,6 +5,7 @@ const list = document.getElementById('list');
 const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
+const deletebtn = document.getElementById('delete-btn')
 
 // กำหนดตัว "," ให้กับตัวเลข
 
@@ -18,6 +19,10 @@ const dataTransaction = [
 ]
 
 const transaction = dataTransaction;
+//                                                  ฟังก์ชั่นใส่ "," ให้กับตัวเลข
+function addcommas(x){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 //                                                ทำการลูปรายการธุรกรรมเพื่อแสดงรายการ
 function init(){
     transaction.forEach(AddDatatolist);
@@ -29,8 +34,13 @@ function AddDatatolist(transaction){
     const item = document.createElement('li');
     const status = transaction.amount< 0 ?'minus':'plus'
     item.classList.add(status)
-    item.innerHTML = `${transaction.text}<span>${symbol}${Math.abs(transaction.amount)}</span><button class="delete-btn">x</button>`;
-    console.log(item);
+    let comdata = transaction.amount
+    if(comdata<0){
+        comdata = `- `+ addcommas(Math.abs(transaction.amount))
+    }else{
+        comdata = `+ `+ addcommas(Math.abs(transaction.amount))
+    }
+    item.innerHTML = `${transaction.text}<span>`+ comdata +`</span><button class="delete-btn">x</button>`;
     list.appendChild(item);
 }
 //                                              ฟังชั่นก์ส่งค่ายอดเงินคงเหลือ,รายรับ,รายจ่าย
@@ -41,14 +51,14 @@ function calculates(){
     const income = amounts.filter(item=>item>0).reduce((result,item)=>(result+=item),0).toFixed(2);
     const expense = amounts.filter(item=>item<0).reduce((result,item)=>(result+=item),0).toFixed(2);
     // ส่งค่าที่ได้ไปที่ค่าเงินคงเหลือ,รายรับ,รายจ่าย
-    balance.innerHTML = `฿${total}`;
-    money_plus.innerHTML = `฿${income}`;
-    money_minus.innerHTML = `฿${expense}`;
+    balance.innerHTML = `฿`+addcommas(total);
+    money_plus.innerHTML = `฿`+addcommas(income);
+    money_minus.innerHTML = `฿`+addcommas(expense);
 }
 
 init();
 
-//                                                    ฟังชั่นก์เพื่มธุรกรรม
+//                                                    ฟังก์ชั่นเพื่มธุรกรรม
 const daTa = document.getElementById("tr-btn");
 daTa.addEventListener("click",function(){
     const forto = {id:transaction.length+1,text:text.value,amount:parseInt(amount.value)};
@@ -59,4 +69,5 @@ daTa.addEventListener("click",function(){
     AddDatatolist(las);
     calculates();
 })
+//                                                       ฟังก์ชั่นลบธุรกรรม
 
