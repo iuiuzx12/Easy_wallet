@@ -7,7 +7,6 @@ const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 const deletebtn = document.getElementById('delete-btn')
 
-// กำหนดตัว "," ให้กับตัวเลข
 
 
 //                                                      รายการธุรกรรม
