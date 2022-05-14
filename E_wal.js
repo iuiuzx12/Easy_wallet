@@ -50,7 +50,12 @@ function calculates(){
     const income = amounts.filter(item=>item>0).reduce((result,item)=>(result+=item),0).toFixed(2);
     const expense = amounts.filter(item=>item<0).reduce((result,item)=>(result+=item),0).toFixed(2);
     // ส่งค่าที่ได้ไปที่ค่าเงินคงเหลือ,รายรับ,รายจ่าย
-    balance.innerHTML = `฿`+addcommas(total);
+    if(total<0){
+        balance.innerHTML = `฿0.00 (ติดลบ${addcommas(total)})`
+    }else{
+        balance.innerHTML = `฿`+addcommas(total);
+    }
+    
     money_plus.innerHTML = `฿`+addcommas(income);
     money_minus.innerHTML = `฿`+addcommas(expense);
 }
@@ -59,14 +64,20 @@ init();
 
 //                                                    ฟังก์ชั่นเพื่มธุรกรรม
 const daTa = document.getElementById("tr-btn");
-daTa.addEventListener("click",function(){
-    const forto = {id:transaction.length+1,text:text.value,amount:parseInt(amount.value)};
-    text.value = ""
-    amount.value = ""
-    transaction.push(forto);
-    let las = transaction[transaction.length-1];
-    AddDatatolist(las);
-    calculates();
+daTa.addEventListener("click",function(even){
+    even.preventDefault();
+    if(text.value.trim() === ""|| amount.value.trim() === ""){
+        alert("กรุณาป้อนข้อมูล")
+    }else{
+        const forto = {id:transaction.length+1,text:text.value,amount:parseInt(amount.value)};
+        text.value = ""
+        amount.value = ""
+        transaction.push(forto);
+        let las = transaction[transaction.length-1];
+        AddDatatolist(las);
+        calculates();
+    }
+    
 })
 //                                                       ฟังก์ชั่นลบธุรกรรม
 
