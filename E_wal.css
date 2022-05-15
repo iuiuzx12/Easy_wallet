@@ -27,10 +27,12 @@ body{
     background-color: rgb(217, 211, 211);
 }
 .btn{
+    border-radius: 5px;
+    border: 0;
     font-family: 'kanit',sans-serif;
     cursor: pointer;
     color: white;
-    background-color: rgb(136, 102, 58);
+    background-color: rgb(185, 140, 209);
     box-shadow: var(--box-shadow);
     display: block;
     margin: 15px 0 30px;
