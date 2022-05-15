@@ -10,20 +10,15 @@ const deletebtn = document.getElementById('delete-btn')
 
 
 //                                                      รายการธุรกรรม
-const dataTransaction = [
-    {id:1,text:"ค่าขนม",amount:-100},
-    {id:2,text:"ค่าห้อง",amount:-3000},
-    {id:3,text:"เงินเดือน",amount:+18000},
-    {id:4,text:"ค่าน้ำ",amount:-300},
-]
 
-const transaction = dataTransaction;
+let transaction = [];
 //                                                  ฟังก์ชั่นใส่ "," ให้กับตัวเลข
 function addcommas(x){
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 //                                                ทำการลูปรายการธุรกรรมเพื่อแสดงรายการ
 function init(){
+    list.innerHTML = "";
     transaction.forEach(AddDatatolist);
     calculates(transaction);
 }
@@ -39,7 +34,7 @@ function AddDatatolist(transaction){
     }else{
         comdata = `+ `+ addcommas(Math.abs(transaction.amount))
     }
-    item.innerHTML = `${transaction.text}<span>`+ comdata +`</span><button class="delete-btn">x</button>`;
+    item.innerHTML = `${transaction.text}<span>`+ comdata +`</span><button class="delete-btn" onclick="removedata(${transaction.id})">x</button>`;
     list.appendChild(item);
 }
 //                                              ฟังชั่นก์ส่งค่ายอดเงินคงเหลือ,รายรับ,รายจ่าย
@@ -80,4 +75,7 @@ daTa.addEventListener("click",function(even){
     
 })
 //                                                       ฟังก์ชั่นลบธุรกรรม
-
+function removedata(id){
+    transaction=transaction.filter(transaction=>transaction.id !==id);
+    init();
+}
